@@ -1,0 +1,340 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 3.0.2 (Python 3.6.4 on win32)" generated="20180104 16:22:57.646">
+<suite id="s1" name="Ex6" source="C:\Users\chanasit\Desktop\RobotTraining\ex6.robot">
+<test id="s1-t1" name="ล็อกอินต้องสำเร็จ">
+<kw name="เปิด Google Chrome ไปที่หน้าล็อกอิน" type="setup">
+<kw name="Open Headless Browser" library="keywords">
+<arguments>
+<arg>${URL}</arg>
+</arguments>
+<kw name="Set Chrome Options" library="keywords">
+<assign>
+<var>${options}</var>
+</assign>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>sys.modules['selenium.webdriver'].ChromeOptions()</arg>
+<arg>sys, selenium.webdriver</arg>
+</arguments>
+<assign>
+<var>${options}</var>
+</assign>
+<msg timestamp="20180104 16:22:57.892" level="INFO">${options} = &lt;selenium.webdriver.chrome.options.Options object at 0x04046570&gt;</msg>
+<status status="PASS" starttime="20180104 16:22:57.892" endtime="20180104 16:22:57.892"></status>
+</kw>
+<kw name="${option} IN [ @{CHROME_OPTIONS} ]" type="for">
+<kw name="${option} = headless" type="foritem">
+<kw name="Call Method" library="BuiltIn">
+<doc>Calls the named method of the given object with the provided arguments.</doc>
+<arguments>
+<arg>${options}</arg>
+<arg>add_argument</arg>
+<arg>${option}</arg>
+</arguments>
+<status status="PASS" starttime="20180104 16:22:57.892" endtime="20180104 16:22:57.892"></status>
+</kw>
+<status status="PASS" starttime="20180104 16:22:57.892" endtime="20180104 16:22:57.892"></status>
+</kw>
+<kw name="${option} = disable-gpu" type="foritem">
+<kw name="Call Method" library="BuiltIn">
+<doc>Calls the named method of the given object with the provided arguments.</doc>
+<arguments>
+<arg>${options}</arg>
+<arg>add_argument</arg>
+<arg>${option}</arg>
+</arguments>
+<status status="PASS" starttime="20180104 16:22:57.892" endtime="20180104 16:22:57.892"></status>
+</kw>
+<status status="PASS" starttime="20180104 16:22:57.892" endtime="20180104 16:22:57.892"></status>
+</kw>
+<status status="PASS" starttime="20180104 16:22:57.892" endtime="20180104 16:22:57.892"></status>
+</kw>
+<msg timestamp="20180104 16:22:57.892" level="INFO">${options} = &lt;selenium.webdriver.chrome.options.Options object at 0x04046570&gt;</msg>
+<status status="PASS" starttime="20180104 16:22:57.892" endtime="20180104 16:22:57.892"></status>
+</kw>
+<kw name="Create Webdriver" library="SeleniumLibrary">
+<doc>Creates an instance of Selenium WebDriver.</doc>
+<arguments>
+<arg>Chrome</arg>
+<arg>chrome_options=${options}</arg>
+</arguments>
+<msg timestamp="20180104 16:22:57.892" level="INFO">Creating an instance of the Chrome WebDriver.</msg>
+<status status="PASS" starttime="20180104 16:22:57.892" endtime="20180104 16:23:02.329"></status>
+</kw>
+<kw name="Go To" library="SeleniumLibrary">
+<doc>Navigates the active browser instance to the provided ``url``.</doc>
+<arguments>
+<arg>${url}</arg>
+</arguments>
+<msg timestamp="20180104 16:23:02.329" level="INFO">Opening url 'https://robot-stage-1.firebaseapp.com/#signin'</msg>
+<status status="PASS" starttime="20180104 16:23:02.329" endtime="20180104 16:23:06.392"></status>
+</kw>
+<status status="PASS" starttime="20180104 16:22:57.892" endtime="20180104 16:23:06.392"></status>
+</kw>
+<status status="PASS" starttime="20180104 16:22:57.892" endtime="20180104 16:23:06.392"></status>
+</kw>
+<kw name="ล็อกอินเข้าสู่ระบบด้วย">
+<arguments>
+<arg>${VALID_USERNAME}</arg>
+<arg>${VALID_PASSWORD}</arg>
+</arguments>
+<kw name="Input Text" library="SeleniumLibrary">
+<doc>Types the given ``text`` into text field identified by ``locator``.</doc>
+<arguments>
+<arg>inputUser</arg>
+<arg>${username}</arg>
+</arguments>
+<msg timestamp="20180104 16:23:06.395" level="INFO">Typing text 'demouser' into text field 'inputUser'.</msg>
+<status status="PASS" starttime="20180104 16:23:06.395" endtime="20180104 16:23:06.500"></status>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<doc>Types the given ``text`` into text field identified by ``locator``.</doc>
+<arguments>
+<arg>inputPassword</arg>
+<arg>${password}</arg>
+</arguments>
+<msg timestamp="20180104 16:23:06.500" level="INFO">Typing text 'demopassword' into text field 'inputPassword'.</msg>
+<status status="PASS" starttime="20180104 16:23:06.500" endtime="20180104 16:23:06.585"></status>
+</kw>
+<kw name="Click Button" library="SeleniumLibrary">
+<doc>Clicks button identified by ``locator``.</doc>
+<arguments>
+<arg>buttonLogin</arg>
+</arguments>
+<msg timestamp="20180104 16:23:06.585" level="INFO">Clicking button 'buttonLogin'.</msg>
+<status status="PASS" starttime="20180104 16:23:06.585" endtime="20180104 16:23:06.672"></status>
+</kw>
+<status status="PASS" starttime="20180104 16:23:06.394" endtime="20180104 16:23:06.673"></status>
+</kw>
+<kw name="ระบบจะต้องแสดงหน้า Dashboard">
+<kw name="Retry">
+<arguments>
+<arg>Location Should Be</arg>
+<arg>${DASHBOARD_URL}</arg>
+</arguments>
+<kw name="Wait Until Keyword Succeeds" library="BuiltIn">
+<doc>Runs the specified keyword and retries if it fails.</doc>
+<arguments>
+<arg>5s</arg>
+<arg>2s</arg>
+<arg>@{args}</arg>
+</arguments>
+<kw name="Location Should Be" library="SeleniumLibrary">
+<doc>Verifies that current URL is exactly ``url``.</doc>
+<arguments>
+<arg>https://robot-stage-1.firebaseapp.com/#/user/dashboard</arg>
+</arguments>
+<kw name="Capture Page Screenshot" library="SeleniumLibrary">
+<doc>Takes screenshot of the current page and embeds it into log file.</doc>
+<msg timestamp="20180104 16:23:06.938" level="INFO" html="yes">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-1.png"&gt;&lt;img src="selenium-screenshot-1.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20180104 16:23:06.681" endtime="20180104 16:23:06.938"></status>
+</kw>
+<msg timestamp="20180104 16:23:06.942" level="FAIL">Location should have been 'https://robot-stage-1.firebaseapp.com/#/user/dashboard' but was 'https://robot-stage-1.firebaseapp.com/#/signin'.</msg>
+<status status="FAIL" starttime="20180104 16:23:06.674" endtime="20180104 16:23:06.942"></status>
+</kw>
+<kw name="Location Should Be" library="SeleniumLibrary">
+<doc>Verifies that current URL is exactly ``url``.</doc>
+<arguments>
+<arg>https://robot-stage-1.firebaseapp.com/#/user/dashboard</arg>
+</arguments>
+<msg timestamp="20180104 16:23:08.950" level="INFO">Current location is 'https://robot-stage-1.firebaseapp.com/#/user/dashboard'.</msg>
+<status status="PASS" starttime="20180104 16:23:08.950" endtime="20180104 16:23:08.950"></status>
+</kw>
+<status status="PASS" starttime="20180104 16:23:06.674" endtime="20180104 16:23:08.950"></status>
+</kw>
+<status status="PASS" starttime="20180104 16:23:06.673" endtime="20180104 16:23:08.950"></status>
+</kw>
+<status status="PASS" starttime="20180104 16:23:06.673" endtime="20180104 16:23:08.950"></status>
+</kw>
+<kw name="Close Browser" library="SeleniumLibrary" type="teardown">
+<doc>Closes the current browser.</doc>
+<status status="PASS" starttime="20180104 16:23:08.950" endtime="20180104 16:23:12.052"></status>
+</kw>
+<status status="PASS" starttime="20180104 16:22:57.892" endtime="20180104 16:23:12.052" critical="yes"></status>
+</test>
+<test id="s1-t2" name="ล็อกอินไม่สำเร็จ">
+<kw name="เปิด Google Chrome ไปที่หน้าล็อกอิน" type="setup">
+<kw name="Open Headless Browser" library="keywords">
+<arguments>
+<arg>${URL}</arg>
+</arguments>
+<kw name="Set Chrome Options" library="keywords">
+<assign>
+<var>${options}</var>
+</assign>
+<kw name="Evaluate" library="BuiltIn">
+<doc>Evaluates the given expression in Python and returns the results.</doc>
+<arguments>
+<arg>sys.modules['selenium.webdriver'].ChromeOptions()</arg>
+<arg>sys, selenium.webdriver</arg>
+</arguments>
+<assign>
+<var>${options}</var>
+</assign>
+<msg timestamp="20180104 16:23:12.052" level="INFO">${options} = &lt;selenium.webdriver.chrome.options.Options object at 0x04023DB0&gt;</msg>
+<status status="PASS" starttime="20180104 16:23:12.052" endtime="20180104 16:23:12.052"></status>
+</kw>
+<kw name="${option} IN [ @{CHROME_OPTIONS} ]" type="for">
+<kw name="${option} = headless" type="foritem">
+<kw name="Call Method" library="BuiltIn">
+<doc>Calls the named method of the given object with the provided arguments.</doc>
+<arguments>
+<arg>${options}</arg>
+<arg>add_argument</arg>
+<arg>${option}</arg>
+</arguments>
+<status status="PASS" starttime="20180104 16:23:12.052" endtime="20180104 16:23:12.068"></status>
+</kw>
+<status status="PASS" starttime="20180104 16:23:12.052" endtime="20180104 16:23:12.068"></status>
+</kw>
+<kw name="${option} = disable-gpu" type="foritem">
+<kw name="Call Method" library="BuiltIn">
+<doc>Calls the named method of the given object with the provided arguments.</doc>
+<arguments>
+<arg>${options}</arg>
+<arg>add_argument</arg>
+<arg>${option}</arg>
+</arguments>
+<status status="PASS" starttime="20180104 16:23:12.068" endtime="20180104 16:23:12.068"></status>
+</kw>
+<status status="PASS" starttime="20180104 16:23:12.068" endtime="20180104 16:23:12.070"></status>
+</kw>
+<status status="PASS" starttime="20180104 16:23:12.052" endtime="20180104 16:23:12.070"></status>
+</kw>
+<msg timestamp="20180104 16:23:12.070" level="INFO">${options} = &lt;selenium.webdriver.chrome.options.Options object at 0x04023DB0&gt;</msg>
+<status status="PASS" starttime="20180104 16:23:12.052" endtime="20180104 16:23:12.070"></status>
+</kw>
+<kw name="Create Webdriver" library="SeleniumLibrary">
+<doc>Creates an instance of Selenium WebDriver.</doc>
+<arguments>
+<arg>Chrome</arg>
+<arg>chrome_options=${options}</arg>
+</arguments>
+<msg timestamp="20180104 16:23:12.071" level="INFO">Creating an instance of the Chrome WebDriver.</msg>
+<status status="PASS" starttime="20180104 16:23:12.071" endtime="20180104 16:23:16.850"></status>
+</kw>
+<kw name="Go To" library="SeleniumLibrary">
+<doc>Navigates the active browser instance to the provided ``url``.</doc>
+<arguments>
+<arg>${url}</arg>
+</arguments>
+<msg timestamp="20180104 16:23:16.850" level="INFO">Opening url 'https://robot-stage-1.firebaseapp.com/#signin'</msg>
+<status status="PASS" starttime="20180104 16:23:16.850" endtime="20180104 16:23:19.570"></status>
+</kw>
+<status status="PASS" starttime="20180104 16:23:12.052" endtime="20180104 16:23:19.570"></status>
+</kw>
+<status status="PASS" starttime="20180104 16:23:12.052" endtime="20180104 16:23:19.570"></status>
+</kw>
+<kw name="ล็อกอินเข้าสู่ระบบด้วยชื่อผู้ใช้หรือรหัสผ่านที่ไม่ถูกต้องจะต้องแสดงข้อผิดพลาด">
+<arguments>
+<arg>${INVALID_USERNAME}</arg>
+<arg>${INVALID_PASSWORD}</arg>
+</arguments>
+<kw name="ล็อกอินเข้าสู่ระบบด้วย">
+<arguments>
+<arg>${username}</arg>
+<arg>${password}</arg>
+</arguments>
+<kw name="Input Text" library="SeleniumLibrary">
+<doc>Types the given ``text`` into text field identified by ``locator``.</doc>
+<arguments>
+<arg>inputUser</arg>
+<arg>${username}</arg>
+</arguments>
+<msg timestamp="20180104 16:23:19.572" level="INFO">Typing text 'JEABuser' into text field 'inputUser'.</msg>
+<status status="PASS" starttime="20180104 16:23:19.571" endtime="20180104 16:23:19.670"></status>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<doc>Types the given ``text`` into text field identified by ``locator``.</doc>
+<arguments>
+<arg>inputPassword</arg>
+<arg>${password}</arg>
+</arguments>
+<msg timestamp="20180104 16:23:19.671" level="INFO">Typing text 'JEABpassword' into text field 'inputPassword'.</msg>
+<status status="PASS" starttime="20180104 16:23:19.671" endtime="20180104 16:23:19.768"></status>
+</kw>
+<kw name="Click Button" library="SeleniumLibrary">
+<doc>Clicks button identified by ``locator``.</doc>
+<arguments>
+<arg>buttonLogin</arg>
+</arguments>
+<msg timestamp="20180104 16:23:19.769" level="INFO">Clicking button 'buttonLogin'.</msg>
+<status status="PASS" starttime="20180104 16:23:19.769" endtime="20180104 16:23:19.860"></status>
+</kw>
+<status status="PASS" starttime="20180104 16:23:19.571" endtime="20180104 16:23:19.860"></status>
+</kw>
+<kw name="ระบบจะต้องแสดงข้อผิดพลาดว่าชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง">
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<doc>Waits until element ``locator`` is visible.</doc>
+<arguments>
+<arg>errorModalBody</arg>
+</arguments>
+<status status="PASS" starttime="20180104 16:23:19.860" endtime="20180104 16:23:21.101"></status>
+</kw>
+<kw name="Element Should Contain" library="SeleniumLibrary">
+<doc>Verifies that element ``locator`` contains text ``expected``.</doc>
+<arguments>
+<arg>errorModalBody</arg>
+<arg>ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง</arg>
+</arguments>
+<msg timestamp="20180104 16:23:21.162" level="INFO">Element 'errorModalBody' contains text 'ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง'.</msg>
+<status status="PASS" starttime="20180104 16:23:21.101" endtime="20180104 16:23:21.162"></status>
+</kw>
+<status status="PASS" starttime="20180104 16:23:19.860" endtime="20180104 16:23:21.163"></status>
+</kw>
+<kw name="ปิดป๊อบอัพข้อผิดพลาด">
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<doc>Waits until element ``locator`` is visible.</doc>
+<arguments>
+<arg>close-error-modal-button</arg>
+</arguments>
+<status status="PASS" starttime="20180104 16:23:21.163" endtime="20180104 16:23:21.197"></status>
+</kw>
+<kw name="Click Button" library="SeleniumLibrary">
+<doc>Clicks button identified by ``locator``.</doc>
+<arguments>
+<arg>close-error-modal-button</arg>
+</arguments>
+<msg timestamp="20180104 16:23:21.198" level="INFO">Clicking button 'close-error-modal-button'.</msg>
+<status status="PASS" starttime="20180104 16:23:21.197" endtime="20180104 16:23:21.270"></status>
+</kw>
+<kw name="Wait Until Element Is Not Visible" library="SeleniumLibrary">
+<doc>Waits until element ``locator`` is not visible.</doc>
+<arguments>
+<arg>errorModal</arg>
+</arguments>
+<kw name="Capture Page Screenshot" library="SeleniumLibrary">
+<doc>Takes screenshot of the current page and embeds it into log file.</doc>
+<msg timestamp="20180104 16:23:26.704" level="INFO" html="yes">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-2.png"&gt;&lt;img src="selenium-screenshot-2.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20180104 16:23:26.447" endtime="20180104 16:23:26.704"></status>
+</kw>
+<msg timestamp="20180104 16:23:26.706" level="FAIL">Element 'errorModal' still visible after 5 seconds.</msg>
+<status status="FAIL" starttime="20180104 16:23:21.270" endtime="20180104 16:23:26.706"></status>
+</kw>
+<status status="FAIL" starttime="20180104 16:23:21.163" endtime="20180104 16:23:26.706"></status>
+</kw>
+<status status="FAIL" starttime="20180104 16:23:19.571" endtime="20180104 16:23:26.706"></status>
+</kw>
+<kw name="Close Browser" library="SeleniumLibrary" type="teardown">
+<doc>Closes the current browser.</doc>
+<status status="PASS" starttime="20180104 16:23:26.707" endtime="20180104 16:23:29.747"></status>
+</kw>
+<status status="FAIL" starttime="20180104 16:23:12.052" endtime="20180104 16:23:29.747" critical="yes">Element 'errorModal' still visible after 5 seconds.</status>
+</test>
+<status status="FAIL" starttime="20180104 16:22:57.662" endtime="20180104 16:23:29.747"></status>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="1">Critical Tests</stat>
+<stat pass="1" fail="1">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="1" fail="1" id="s1" name="Ex6">Ex6</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
